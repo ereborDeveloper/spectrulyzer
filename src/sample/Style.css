@@ -1,0 +1,9 @@
+.root {
+    -fx-background-color: #383838;
+}
+#device,#rangeM,#rangeH,#speed,#accuracy,#algorithm
+{
+  -fx-background-color: #484848;
+  -fx-text-inner-color:#ddd;
+  -fx-background-radius:0;
+}
