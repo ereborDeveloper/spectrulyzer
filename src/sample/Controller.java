@@ -41,6 +41,7 @@ public class Controller {
     private float fade;
     private Thread startCapturing;
     private boolean isRunning = false;
+    private float[] spectrum;
 
     public void ShowMenu(ContextMenuEvent contextMenuEvent) {
         Device.InitialazeMixer();
@@ -83,7 +84,7 @@ public class Controller {
                         if (line.isOpen()) {
                             line.stop();
                             line.close();
-                            line=null;
+                            line = null;
                             nullMeters();
                         }
                     }
@@ -146,17 +147,17 @@ public class Controller {
         @Override
         public void run() {
             final int bufferByteSize = Settings.getBuffer();
-
+            //running recording thread
             try {
                 System.out.println("It works!");
                 line.open(Settings.getFormat(), Settings.getBuffer());
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
+            double maxFreq = 0;
             byte[] buf = new byte[bufferByteSize];
-            float[] samples = new float[bufferByteSize / 2];
-
+            float[] samples = new float[bufferByteSize];
+            Complex[] fftBuffer = new Complex[bufferByteSize];
             float lastPeak = 0f;
             float lastRms = 0f;
             float maxRms = 0;
@@ -164,21 +165,24 @@ public class Controller {
             {
                 for (int b; (b = line.read(buf, 0, buf.length)) > -1; ) {
 
-                    //Конвертируем байты в сэмплы
+                    //converting bytes to samples
                     for (int i = 0, s = 0; i < b; ) {
                         int sample = 0;
 
                         sample += buf[i++] & 0xFF; // (reverse these two lines
                         sample += buf[i++] << 8;   //  if the format is big endian)
 
-                        // Нормализация от -1 до +1 float
+                        // Normalize from -1 to +1 float
                         samples[s++] = sample / 32768f;
-                    }
 
+                    }
+                    int i = 0;
                     float rms = 0f;
                     float peak = 0f;
                     for (float sample : samples) {
-
+                        //filling fftBuffer
+                        fftBuffer[i] = new Complex(sample, 0);
+                        i++;
                         float abs = Math.abs(sample);
                         if (abs > peak) {
                             peak = abs;
@@ -186,7 +190,7 @@ public class Controller {
 
                         rms += sample * sample;
                     }
-
+                    //setting METERS
                     rms = (float) Math.sqrt(rms / samples.length);
                     if (rms > maxRms) {
                         maxRms = rms;
@@ -207,6 +211,32 @@ public class Controller {
                     lastPeak = peak;
                     setPeakL(peak);
                     setRmsL(maxRms);
+                    System.out.println();
+                    System.out.println(i);
+                    System.out.println();
+                    //
+                    int index = 0;
+                    int l=0;
+                    for (l = 0; l < bufferByteSize / 2 - 1; l++) {
+                        double freq = FFT.fft(fftBuffer)[l].abs();
+                        System.out.println(freq);
+                        if (freq > maxFreq) {
+                            maxFreq = freq;
+                            index=l;
+                        }
+                    }
+                    float max=index*44100.0f/bufferByteSize;
+                    System.out.println();
+                    System.out.println("Основная частота "+index+" сигнала - "+max);
+                    try {
+                        Thread.sleep(2000);
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                    System.out.println();
+                    //нужно отмасштабировать и разобраться с коэффициентами
                 }
             }
         }

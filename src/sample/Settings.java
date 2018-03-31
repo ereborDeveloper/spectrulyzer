@@ -4,7 +4,7 @@ import javax.sound.sampled.AudioFormat;
 
 //Полустатический класс настроек. Настройки ведь одни, ведь так? (Переделать в Singleton)
 public class Settings {
-    private float samplerate;
+    private static float samplerate;
     private int saplesize;
     private short channels;
     private boolean signed;
@@ -50,4 +50,6 @@ public class Settings {
     public static int getBuffer() {
         return buffer;
     }
+
+    public static float getSampleRate() {return samplerate;}
 }
