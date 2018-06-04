@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.AreaChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import sample.LogarithmicAxis?>
+
+<BorderPane id="root" fx:id="root" cacheShape="false" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <top>
+      <ToolBar id="tools" maxHeight="37.0" minHeight="18.0" prefHeight="25.0" prefWidth="596.0" translateZ="10.0" BorderPane.alignment="CENTER">
+        <items>
+          <Button id="Button" fx:id="saveButon" maxHeight="25.0" maxWidth="60.0" minHeight="25.0" minWidth="50.0" mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="50.0" text="ADD" textFill="WHITE" translateX="25.0">
+               <font>
+                  <Font size="7.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets></Button>
+            <Button id="Button" fx:id="deleteButton" maxHeight="25.0" maxWidth="60.0" minHeight="25.0" minWidth="50.0" mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="50.0" text="DELETE" translateX="25.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button id="Button" fx:id="openButton" layoutX="39.0" layoutY="-2.0" maxHeight="25.0" maxWidth="60.0" minHeight="25.0" minWidth="50.0" mnemonicParsing="false" onAction="#open" prefHeight="25.0" prefWidth="50.0" text="OPEN" translateX="25.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button id="Button" fx:id="diffButton" layoutX="10.0" layoutY="-2.0" maxHeight="25.0" maxWidth="70.0" minHeight="25.0" minWidth="70.0" mnemonicParsing="false" onAction="#diff" prefHeight="25.0" prefWidth="70.0" text="DIFFERENCE" textFill="WHITE" translateX="25.0">
+               <font>
+                  <Font size="7.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <Button id="Button" fx:id="settings" maxHeight="25.0" maxWidth="70.0" minHeight="25.0" minWidth="70.0" mnemonicParsing="false" onAction="#openSettings" prefHeight="25.0" prefWidth="70.0" text="SETTINGS" translateX="25.0" wrapText="true">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button id="Button" fx:id="legendButton" layoutX="155.0" layoutY="-2.0" maxHeight="25.0" maxWidth="70.0" minHeight="25.0" minWidth="70.0" mnemonicParsing="false" onAction="#showLegend" prefHeight="25.0" prefWidth="70.0" text="LEGEND" translateX="25.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button id="Button" fx:id="showLabelsButton" layoutX="97.0" layoutY="-2.0" maxHeight="25.0" maxWidth="70.0" minHeight="25.0" minWidth="70.0" mnemonicParsing="false" onAction="#showLabels" prefHeight="25.0" prefWidth="70.0" text="FREQUENCY" translateX="25.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="freezeButton" maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#freeze" prefHeight="25.0" prefWidth="25.0" translateX="25.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Label id="lblS" text="SPECTRULYZER" translateX="25.0" />
+            <Label id="lblA" prefHeight="17.0" prefWidth="82.0" text="EUGENE BUIVOLOV INC." translateX="-55.0" translateY="13.0">
+               <font>
+                  <Font size="7.0" />
+               </font></Label>
+            <TextField maxWidth="70.0" minWidth="70.0" prefWidth="70.0" translateX="25.0" visible="false" />
+            <Button id="hide" fx:id="hideButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Button" visible="false" />
+        </items>
+         <padding>
+            <Insets top="25.0" />
+         </padding>
+      </ToolBar>
+   </top>
+   <right>
+      <HBox fx:id="Levels" maxWidth="30.0" minWidth="30.0" prefHeight="335.0" prefWidth="30.0" rotate="180.0" translateX="-5.0" BorderPane.alignment="CENTER">
+         <children>
+            <Rectangle fx:id="peakL" cache="true" cacheHint="SPEED" fill="#3c648a" height="335.0" stroke="#93a0ab" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeMiterLimit="2.0" strokeType="INSIDE" strokeWidth="0.5" width="12.0" HBox.hgrow="ALWAYS">
+               <rotationAxis>
+                  <Point3D y="1.0" />
+               </rotationAxis></Rectangle>
+            <Rectangle fx:id="rmsL" cache="true" cacheHint="SPEED" fill="#b3c3d3" height="335.0" opacity="0.68" stroke="#b3c3d3" strokeType="INSIDE" translateX="3.0" width="11.0" x="10.0" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <rotationAxis>
+                  <Point3D y="1.0" />
+               </rotationAxis></Rectangle>
+            <Rectangle fx:id="rmsR" arcHeight="5.0" arcWidth="5.0" fill="#8d9297" height="335.0" layoutX="10.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="8.0" />
+            <Rectangle fx:id="peakR" arcHeight="5.0" arcWidth="5.0" fill="#8d9297" height="335.0" layoutX="26.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="8.0" />
+         </children></HBox>
+   </right>
+   <center>
+      <AreaChart id="spectrum" fx:id="spectrum" accessibleRole="PARENT" alternativeRowFillVisible="false" animated="false" cache="true" cacheHint="QUALITY" cacheShape="true" centerShape="true" createSymbols="false" depthTest="DISABLE" horizontalGridLinesVisible="false" horizontalZeroLineVisible="false" legendVisible="false" pickOnBounds="false" scaleShape="false" translateX="10.0" translateY="10.0" verticalZeroLineVisible="false" BorderPane.alignment="CENTER">
+        <xAxis>
+          <LogarithmicAxis fx:id="X" side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="Y" side="RIGHT" translateX="0" />
+        </yAxis>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </AreaChart>
+   </center>
+   <left>
+      <Pane id="n" maxWidth="0.0" minWidth="0.0" prefWidth="0.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label id="maxFreq" fx:id="maxFreq" contentDisplay="CENTER" minWidth="50.0" text="0" textAlignment="CENTER" textFill="WHITE" visible="false" />
+            <Pane id="pane" fx:id="labelPane" maxHeight="1.7976931348623157E308" minHeight="300.0" nodeOrientation="RIGHT_TO_LEFT" prefWidth="0.0" />
+         </children>
+      </Pane>
+   </left>
+   <bottom>
+      <VBox prefHeight="11.0" prefWidth="596.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox maxHeight="0.0" minHeight="0.0" prefHeight="0.0" prefWidth="596.0" visible="false">
+               <children>
+                  <Label fx:id="deviceLbl" alignment="CENTER" contentDisplay="CENTER" maxWidth="200.0" prefHeight="17.0" prefWidth="172.0" text="DEVICE" HBox.hgrow="ALWAYS" />
+                  <Label fx:id="fromLbl" alignment="CENTER" prefHeight="17.0" prefWidth="42.0" text="FROM" HBox.hgrow="ALWAYS" />
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="63.0" text="TO" HBox.hgrow="ALWAYS" />
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="123.0" text="WINDOW FUNCTION" HBox.hgrow="ALWAYS" />
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="123.0" text="FADE SPEED" HBox.hgrow="ALWAYS" />
+                  <Label alignment="CENTER" text="RESOLUTION" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+            <HBox id="panel" prefHeight="11.0" prefWidth="596.0">
+               <children>
+                  <ChoiceBox id="device" fx:id="dev" maxWidth="500.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ChoiceBox>
+                  <TextField id="rangeM" fx:id="fromHz" onAction="#setBounds" prefWidth="70.0" text="22">
+                     <cursor>
+                        <Cursor fx:constant="MOVE" />
+                     </cursor>
+                  </TextField>
+                  <TextField id="rangeH" fx:id="toHz" onAction="#setBounds" prefWidth="90.0" text="22000">
+                     <cursor>
+                        <Cursor fx:constant="MOVE" />
+                     </cursor>
+                  </TextField>
+                  <ChoiceBox id="algorithm" fx:id="window" maxWidth="300.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ChoiceBox>
+                  <ChoiceBox id="speed" fx:id="fadeSpeed" maxWidth="300.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ChoiceBox>
+                  <ChoiceBox id="accuracy" fx:id="accuracy" maxWidth="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ChoiceBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </bottom>
+</BorderPane>
