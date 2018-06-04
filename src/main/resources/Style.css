@@ -1,0 +1,160 @@
+#root
+{
+    -fx-background-color: #242424;
+    -fx-border-color:#52E2FC77;
+    -fx-border-insets: 0;
+    -fx-background-radius:1;
+    -fx-border-radius: 1;
+    -fx-border-width: 2 2 5 2;
+    -fx-border-style: solid;
+    -fx-box-shadow:#fff 0 0 5;
+}
+.labelSign
+{
+    -fx-font-family:"Helvetica";
+    -fx-font-size:10;
+    -fx-text-fill:#181818;
+}
+#set
+{
+    -fx-background-color: #ddd;
+    -fx-text-fill:#181818;
+    -fx-font-family:"Helvetica";
+    -fx-border-color:#82E2FF77;
+    -fx-border-insets: 0;
+    -fx-border-radius: 1;
+    -fx-border-width: 2;
+    -fx-border-style: solid;
+    -fx-box-shadow:#fff 0 0 5;
+}
+#panel{
+    -fx-margin:10;
+}
+#device,#rangeM,#rangeH,#speed,#accuracy,#algorithm
+{
+    -fx-background-color: linear-gradient(from 50% 0% to 50% 100%, #282828 0%, #181818 100%);
+    -fx-text-inner-color:#fff;
+    -fx-background-radius:0;
+    -fx-border-color:#52C2DC;
+    -fx-border-width: 0.2 0.5 0 0;
+    -fx-border-style: solid;
+}
+.chart-plot-background
+{
+/*#B282BC*/
+    -fx-background-color: linear-gradient(from 50% 0% to 50% 100%, #3282BC 0%, #383838 100%);
+    -fx-fill:#ffa07aaa;
+}
+.default-color0.chart-series-area-fill { -fx-fill: #1818189f }
+.default-color1.chart-series-area-fill { -fx-fill: #1818185f }
+.default-color2.chart-series-area-fill { -fx-fill: #1818184f }
+.default-color3.chart-series-area-fill { -fx-fill: #1818183f }
+.default-color4.chart-series-area-fill { -fx-fill: #1818183f }
+.default-color5.chart-series-area-fill { -fx-fill: #1818182f }
+.default-color6.chart-series-area-fill { -fx-fill: #1818182f }
+.default-color0.chart-series-area-line { -fx-stroke: #32C2CC; }
+.default-color1.chart-series-area-line {
+    -fx-stroke: #FFF674;
+    -fx-opacity: 0.8; }
+.default-color2.chart-series-area-line {
+    -fx-stroke: #FF12D8;
+    -fx-opacity: 0.8; }
+.default-color3.chart-series-area-line {
+    -fx-stroke: #00F674;
+    -fx-opacity: 0.8; }
+.default-color4.chart-series-area-line {
+    -fx-stroke: #FFFFFF;
+    -fx-opacity: 0.8; }
+
+.choice-box .context-menu { -fx-background-color: black; }
+.choice-box .menu-item:focused { -fx-background-color: #32C2CC; }
+.choice-box .menu-item > .label { -fx-text-fill: white; }
+.choice-box .menu-item:focused > .label { -fx-text-fill: black; }
+.choice-box {
+  -fx-background-color: black;
+  -fx-mark-color: #32C2CC;
+}
+.choice-box > .label { -fx-text-fill: white; }
+
+.axis {
+    -fx-tick-mark-visible: false;
+    -fx-text-label-fill:white;
+    -fx-minor-tick-visible: false;
+    -fx-tick-length: 3;
+    -fx-minor-tick-length: 0;
+    -fx-border-color: transparent;
+}
+.axis:bottom {
+    -fx-border-color: white transparent transparent transparent;
+}
+#tools
+{
+    -fx-background-color: linear-gradient(from 50% 0% to 50% 100%, #24242400 0%, #24242400 100%);
+}
+.axis Text{
+    -fx-fill: white;
+}
+.chart-vertical-grid-lines {
+    -fx-stroke: #aef;
+    -fx-stroke-width: 0.5;
+    -fx-effect: null;
+}
+.label
+{
+    -fx-text-fill: #181818;
+
+}
+#Button
+{
+    -fx-background-color:linear-gradient(from 50% 0% to 50% 100%, #5A8BBC 0%, #383838 100%);
+    -fx-border-width:0.2;
+    -fx-border-color:#ccc;
+    -fx-border-style:solid;
+    -fx-text-fill:#fff;
+    -fx-font-size:10;
+}
+#freezeButton
+{
+    -fx-background-radius:50;
+    -fx-border-radius:50;
+    -fx-border-width:0;
+    -fx-border-color:#ccc;
+    -fx-border-style:solid;
+    -fx-background-color:#ffffff00;
+    -fx-background-image:url('freeze.png');
+}
+#freezeButton:hover
+{
+    -fx-effect: dropshadow(gaussian , rgba(255,255,255,0.5) , 4,0.1,0,0);
+}
+#Button:hover
+{
+    -fx-border-width:0.5;
+}
+#maxFreq
+{
+    -fx-text-fill: #fff;
+    -fx-padding: 2;
+    -fx-width:60;
+    -fx-width:25;
+    -fx-border-color:#fff;
+    -fx-border-width: 0.2 0.2 0.2 0.2;
+    -fx-border-style: solid;
+    -fx-background-color: #ffffff11;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,2 );
+}
+#pane
+{
+    -fx-background-color:#18181899;
+    -fx-width:100;
+}
+#lblS
+{
+    -fx-font-size:20;
+    -fx-text-fill:linear-gradient(from 50% 0% to 50% 100%, #5A8BBC 0%, #383838 100%);
+}
+#lblA
+{
+    -fx-font-size:7;
+    -fx-text-fill:#fff;
+}
